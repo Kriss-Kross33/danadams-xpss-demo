@@ -1,0 +1,204 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+{% block title %}Danadams Pharmaceuticals{% endblock %}
+{% block extrajs %}
+    <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+<!--end slider -->
+<link rel="stylesheet" href="{% static "css/flexslider.css" %}" type="text/css" media="screen" />
+				<script type="text/javascript">
+			$(window).load(function() {
+				$("#flexiselDemo").flexisel({
+					visibleItems: 5,
+					animationSpeed: 1000,
+					autoPlay: false,
+					autoPlaySpeed: 3000,
+					pauseOnHover: true,
+					enableResponsiveBreakpoints: true,
+			    	responsiveBreakpoints: {
+			    		portrait: {
+			    			changePoint:480,
+			    			visibleItems: 1
+			    		},
+			    		landscape: {
+			    			changePoint:640,
+			    			visibleItems: 2
+			    		},
+			    		tablet: {
+			    			changePoint:768,
+			    			visibleItems: 3
+			    		}
+			    	}
+			    });
+
+			});
+		</script>
+		<script type="text/javascript" src="{% static "js/jquery.flexisel.js" %}"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="main-top">
+			<div class="col-md-8 banner">
+				<!-- start slider -->
+				<!----->
+				<div class="slider">
+					  <div class="callbacks_container">
+						  <ul class="rslides" id="slider">
+							 <li>
+								 <img src="{% static "images/dp11.jpg" %}" alt=""/>
+							 </li>
+							 <li>
+								 <img src="{% static "images/dp0.jpg" %}" alt=""/>
+							 </li>
+							 <li>
+								 <img src="{% static "images/dp7.jpg" %}" alt=""/>
+							 </li>
+							 <li>
+								 <img src="{% static "images/dp2.jpg" %}" alt=""/>
+							 </li>
+                              <li>
+								 <img src="{% static "images/dp1.jpg" %}" alt=""/>
+							 </li>
+                              <li>
+								 <img src="{% static "images/dp4.jpg" %}" alt=""/>
+							 </li>
+                              <li>
+								 <img src="{% static "images/dp9.jpg" %}" alt=""/>
+							 </li>
+                              <li>
+								 <img src="{% static "images/dp10.jpg" %}" alt=""/>
+							 </li>
+						  </ul>
+					  </div>
+				</div>
+				<!----->
+				<!-- end  slider -->
+		   </div>
+		   <div class="col-md-4 right-grid">
+				<div class="right-grid-top">
+					<div class="r-sale text-center">
+						<h6>Panadol Extra</h6>
+						<h2>Sale</h2>
+					</div>
+					<div class="r-discount">
+						<span>upto</span>
+						<h2>15%</h2>
+						<p>OFF</p>
+						<a href="#">shop now<i class="go"></i></a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="right-grid-bottom">
+					<div class="right-grid-bottom-left">
+						<h3>Deal of the Day</h3>
+						<p>Expires in 3:42:56</p>
+						<h5>Yasmin Capsules</h5>
+						<h2>Extra 20% OFF</h2>
+						<a href="#">shop now<i class="go"></i></a>
+					</div>
+					<div class="right-grid-bottom-right">
+						<img src="{% static "images/yasmin.jpeg" %}" alt="" />
+					</div>
+					<div class="clearfix"></div>
+				</div>
+		   </div>
+		   <div class="clearfix"></div>
+		</div>
+
+    <div class="new-arrivals text-center">
+        {% with products=recent_products %}
+			<div class="col-md-3 new-arrival-head">
+				<h3>New Arrivals</h3>
+				<a class="btn btn-1 btn-1d" href="{% url "inventory:product_list" %}">View All</a>
+			</div>
+            {% for product in recent_products %}
+			<div class="col-md-3 product-item">
+
+                <a href="{{ product.get_absolute_url }}">
+                            <img src="{% if product.image %}{{ product.image.url }}
+                            {% else %}{% static "images/no_image.png" %}{% endif %}" class="img-responsive"/></a>
+				        <h3>{{ product.category }}</h3>
+                        <a href="{{ product.category.get_absolute_url }}">Shop Now<i class="go"></i></a>
+
+            <div class="clearfix"></div>
+
+			</div>
+            {% endfor %}
+			<div class="clearfix"></div>
+    {% endwith %}
+		</div>
+
+
+
+		<div class="best-sellers">
+            {% with products=featured_categories %}
+			<div class="best-sellers-head">
+				<h3>Featured</h3>
+			</div>
+			<div class="best-sellers-menu">
+				<ul>
+                <li><a class="active" href="#"></a></li>
+                    {% for product_category in featured_categories %}
+					    <li><a href="{{ product_category.category.get_absolute_url }}">
+                            {{ product_category.category }}</a></li>
+                    {% endfor %}
+				</ul>
+			</div>
+			<div class="clearfix"></div>
+        {% endwith %}
+		</div>
+		<div class="device">
+			<div class="course_demo">
+                {% with products=featured_products %}
+		          <ul id="flexiselDemo">
+                      {% for product in featured_products %}
+					<li>
+						<div class="ipad text-center">
+							<img src="{% if product.image %}{{ product.image.url }}
+							{% else %}{% static "images/no_image.png" %}{% endif %}" height="90", width="120" />
+							<h4>{{ product.name }}</h4>
+							<h3>GH₵ {{ product.price }}</h3>
+							<ul>
+								<li><i class="cart-1"></i></li>
+								<li><a class="cart" href="#">Add To Cart</a></li>
+							</ul>
+							<div class="clearfix"></div>
+							<ul>
+								<li><i class="heart"></i></li>
+								<li><a class="cart" href="#">Add To Wishlist</a></li>
+							</ul>
+						</div>
+					</li>
+                      {% endfor %}
+				</ul>
+            {% endwith %}
+	  </div>
+	  </div>
+
+		<div class="transport-grid">
+			<div class="col-md-4 shipping">
+				<h3><i class="shipping-icon"></i>Free Deliveries</h3>
+				<p>Free deliveries would be made for orders above GH₵ 1000</p>
+			</div>
+			<div class="col-md-4 shipping">
+				<h3><i class="correct-icon"></i>High Quality Products</h3>
+				<p>Products manufactured from Danadams meets the International Standards and are
+                of High Quality</p>
+			</div>
+			<div class="col-md-4 return">
+				<h3><i class="return-icon"></i>Free Return</h3>
+				<p>Goods Returned</p>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+{% endblock %}

@@ -1,0 +1,306 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+{% block title %}{% if category %}{{ category.title }}{% else %}Products{% endif %}{% endblock %}
+{% block extrajs %}
+    <!-- start menu -->
+<link rel="stylesheet" href="{% static "css/etalage.css" %}">
+<link href="{% static "css/oldStyle.css" %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static "css/oldStyle1.css" %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static "css/oldStyle3.css" %}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="{% static "css/flexslider.css" %}" type="text/css" media="screen" />
+<script src="{% static "js/imagezoom.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.flexisel.js" %}"></script>
+<script src="{% static "js/imagezoom.js" %}"></script>
+<script defer src="{% static "js/jquery.flexslider.js" %}"></script>
+
+
+<script src="{% static "js/jquery.etalage.min.js" %}"></script>
+<script>
+
+    // Can also be used with $(document).ready()
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            controlNav: "thumbnails"
+        });
+    });
+
+
+		</script>
+	<link rel="stylesheet" href="{% static "css/flexslider.css" %}" type="text/css" media="screen" />
+				<script type="text/javascript">
+			$(window).load(function() {
+				$("#flexiselDemo").flexisel({
+					visibleItems: 4,
+					animationSpeed: 1000,
+					autoPlay: true,
+					autoPlaySpeed: 3000,
+					pauseOnHover: true,
+					enableResponsiveBreakpoints: true,
+			    	responsiveBreakpoints: {
+			    		portrait: {
+			    			changePoint:480,
+			    			visibleItems: 1
+			    		},
+			    		landscape: {
+			    			changePoint:640,
+			    			visibleItems: 2
+			    		},
+			    		tablet: {
+			    			changePoint:768,
+			    			visibleItems: 3
+			    		}
+			    	}
+			    });
+
+			});
+		</script>
+{% endblock %}
+{% block content %}
+    <div class="main">
+    <div class="content">
+    	<div class="content_top">
+    		<div class="heading">
+    		<h3>{{ category.name }}</h3>
+    		</div>
+    		<div class="sort">
+    		<p>Sort by:
+    			<select>
+    				<option>Lowest Price</option>
+    				<option>Highest Price</option>
+    				<option>Lowest Price</option>
+    				<option>Lowest Price</option>
+    				<option>Lowest Price</option>
+    				<option>In Stock</option>
+    			</select>
+    		</p>
+    		</div>
+    		<div class="show">
+    		<p>Show:
+    			<select>
+    				<option>4</option>
+    				<option>8</option>
+    				<option>12</option>
+    				<option>16</option>
+    				<option>20</option>
+    				<option>In Stock</option>
+    			</select>
+    		</p>
+    		</div>
+    		<div class="page-no">
+    			<p>Result Pages:<ul>
+    				<li><a href="#">1</a></li>
+    				<li class="active"><a href="#">2</a></li>
+    				<li><a href="#">3</a></li>
+    				<li>[<a href="#"> Next>>></a >]</li>
+    				</ul></p>
+    		</div>
+    		<div class="clearfix"></div>
+    	</div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                <div class="sub-cate">
+            <div class=" top-nav rsidebar span_1_of_left">
+                <h3 class="cate">CATEGORIES</h3>
+		        <ul class="menu">
+
+                    <li {% if not category %}class="item1"{% endif %}>
+                        <a href="{% url "inventory:product_list" %}">All</a>
+
+                    </li>
+                {% for c in categories %}
+                    <li {% if c.slug == category.slug %}class="selected" {% endif %}>
+                        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+             </div>
+        </div>
+                <div class="left_content">
+			<div class="span_1_of_left">
+				<div class="grid images_3_of_2">
+
+						 <div class="clearfix"></div>
+				  </div>
+
+
+                <div class="col-md-7 single-top-right">
+                    <div class="flexslider">
+							  <ul class="slides">
+								<li data-thumb="{% if product.image %}{{ product.image.url }}{% else %}
+                                {% static "images/no_image.png" %}{% endif %}">
+									<div class="thumb-image">
+                                        <img src="{% if product.image %}{{ product.image.url }}{% else %}
+                                    {% static "images/no_image.png" %}{% endif %}" data-imagezoom="true" class="img-responsive" alt=""/> </div>
+								</li>
+
+							  </ul>
+						</div>
+						<div class="single-para simpleCart_shelfItem">
+						<h2>{{ product.name }}</h2>
+                        <h2>
+                            <a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a>
+                        </h2>
+							<div class="star1-on">
+								<ul class="star1-footer">
+										<li><a href="{% static "images/star.png" %}"><i></i></a></li>
+										<li><a href="#"><i> </i></a></li>
+										<li><a href="#"><i> </i></a></li>
+										<li><a href="#"><i> </i></a></li>
+										<li><a href="#"><i> </i></a></li>
+									</ul>
+								<div class="review">
+									<a href="#"> 1 customer review </a>
+
+								</div>
+							<div class="clearfix"> </div>
+							</div>
+
+							<h5 class="item_price">GH₵{{ product.price }}</h5>
+							<p><strong>Description<br></strong>{{ product.description|linebreaks }}</p>
+
+							<ul class="tag-men">
+								<li><span>TAG</span>
+								<span class="women1">: </span></li>
+								<li><span>SKU</span>
+								<span class="women1">: </span></li>
+							</ul>
+
+                                <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                    {{ cart_form }}
+                                    {% csrf_token %}
+                                    <input type="submit" value="Add to cart">
+                                </form>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="device">
+			   <div class="course_demo">
+		          <ul id="flexiselDemo">
+					<li>
+						<div class="ipad text-center">
+                            <img src="{% static "images/b1.jpg" %}" height="120" width="120" />
+
+							<h4></h4>
+							<h3></h3>
+							<ul>
+								<li><i class="cart-1"></i></li>
+								<li><a class="cart" href="#">Add To Cart</a></li>
+							</ul>
+							<div class="clearfix"></div>
+							<ul>
+								<li><i class="heart"></i></li>
+								<li><a class="cart" href="#">Add To Wishlist</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+					<div class="ipad text-center">
+							<img src="{% static "images/b1.jpg" %}" alt="" />
+							<h4></h4>
+							<h3></h3>
+							<ul>
+								<li><i class="cart-1"></i></li>
+								<li><a class="cart" href="#">Add To Cart</a></li>
+							</ul>
+							<div class="clearfix"></div>
+							<ul>
+								<li><i class="heart"></i></li>
+								<li><a class="cart" href="#">Add To Wishlist</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+					<div class="ipad text-center">
+							<img src="{% static "images/b2.jpg" %}" alt="" />
+							<h4></h4>
+							<h3></h3>
+							<ul>
+								<li><i class="cart-1"></i></li>
+								<li><a class="cart" href="#">Add To Cart</a></li>
+							</ul>
+							<div class="clearfix"></div>
+							<ul>
+								<li><i class="heart"></i></li>
+								<li><a class="cart" href="#">Add To Wishlist</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+					<div class="ipad text-center">
+							<img src="{% static "images/asprin1.png" %}" alt="" />
+							<h4></h4>
+							<h3></h3>
+							<ul>
+								<li><i class="cart-1"></i></li>
+								<li><a class="cart" href="#">Add To Cart</a></li>
+							</ul>
+							<div class="clearfix"></div>
+							<ul>
+								<li><i class="heart"></i></li>
+								<li><a class="cart" href="#">Add To Wishlist</a></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+					<div class="ipad text-center">
+							<img src="{% static "images/b1.jpg" %}" alt="" />
+							<h4></h4>
+							<h3></h3>
+							<ul>
+								<li><i class="cart-1"></i></li>
+								<li><a class="cart" href="#">Add To Cart</a></li>
+							</ul>
+							<div class="clearfix"></div>
+							<ul>
+								<li><i class="heart"></i></li>
+								<li><a class="cart" href="#">Add To Wishlist</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+	  </div>
+	  </div>
+			   	</div>
+
+                <div class="clearfix"></div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <!--initiate accordion-->
+		<script type="text/javascript">
+			$(function() {
+			    var menu_ul = $('.menu > li > ul'),
+			           menu_a  = $('.menu > li > a');
+			    menu_ul.hide();
+			    menu_a.click(function(e) {
+			        e.preventDefault();
+			        if(!$(this).hasClass('active')) {
+			            menu_a.removeClass('active');
+			            menu_ul.filter(':visible').slideUp('normal');
+			            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+			        } else {
+			            $(this).removeClass('active');
+			            $(this).next().stop(true,true).slideUp('normal');
+			        }
+			    });
+
+			});
+    </script>
+    </div>
+{% endblock %}
+<!-- FlexSlider -->
+

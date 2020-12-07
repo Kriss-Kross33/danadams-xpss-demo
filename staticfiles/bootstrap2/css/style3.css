@@ -1,0 +1,215 @@
+#main_body_wrap {
+    -webkit-box-shadow: 0px 0px 56px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0px 0px 56px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 0px 56px rgba(0, 0, 0, 0.12);
+    background:#FFFFFF;
+}
+
+.main_wrap {
+    width: 100%;
+}
+.main_wrap {
+    margin: 0px auto;
+}
+.main_wrap {
+    max-width: 1155px !important;
+}
+
+#main_body_wrap_inner {
+    -webkit-box-shadow: 0px 0px 56px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0px 0px 56px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 0px 56px rgba(0, 0, 0, 0.12);
+    background:#FFFFFF;
+}
+
+
+.full-body{
+    background: #F0FFF6;
+}
+.image1{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+    height: auto;
+}
+.image1 img{
+    position:absolute;
+    width:350px;
+    max-height: 100%;
+    /**
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    **/
+}
+
+
+
+
+.header-top1 {
+    background: #072D59;
+	 padding: .7em 0;
+ }
+
+.header-bottom1 {
+    padding: 2em 0;
+	background: url("../images/danpong-header.jpg") no-repeat;
+    background-size: cover;
+}
+
+.logo-nav-right{
+    float: right;
+}
+
+.logo-nav-right1{
+    float: left;
+    margin-right: 2em;
+}
+
+.rslides {
+    position: relative;
+    list-style: outside none none;
+    overflow: hidden;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.search-bar1 input[type="text"] {
+	width: 100%;
+	padding: 8px 45px 8px 8px;
+	border: 1px solid #F5F5F5;
+	background: none;
+	outline: none;
+	-webkit-appearance: none;
+	color: rgba(0, 0, 0, 0.74);
+	font-size: 0.875em;
+	font-family: 'Lato', sans-serif;
+	position: relative;
+}
+.search-bar1 input[type="submit"] {
+    background: url(../images/search2.png)no-repeat 0px 0px;
+    outline: none;
+    -webkit-appearance: none;
+    border: 0;
+    display: inline-block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: -6px;
+    right: -4%;
+}
+.search-bar1 {
+    width: 95%;
+    float: right;
+    background-color: white;
+}
+
+#top1{
+    min-height: 190px;
+
+    text-align: center;
+}
+
+a.add-cart {
+    text-decoration: none;
+    color: #fff;
+    background: #000;
+    padding: 0.4em 0.8em;
+    font-size: 1.15em;
+    text-transform: uppercase;
+    margin-top: 2em;
+    display: inline-block;
+}
+a.add-cart:hover {
+	background: #73b6e1;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+}
+
+.checkout {
+    padding-bottom: 0.5em;
+}
+
+.star1-on {
+    padding-top: 1.3em;
+}
+.star1-on ul {
+    float: left;
+    padding: 0;
+	margin: 0;
+}
+.star1-on ul li {
+    vertical-align: sub;
+}
+ul.star1-footer li {
+    display: inline-block;
+}
+.star1-on a {
+    text-decoration: none;
+    font-size: 1em;
+    color: #000;
+}
+.star1-on a:hover {
+    color: #73b6e1;
+}
+ul.star1-footer li i {
+    height: 16px;
+    width: 16px;
+    background: url("../images/star.png") no-repeat;
+    display: inline-block;
+}
+
+ul {
+    list-style: outside none none;
+}
+
+ul {
+    padding: 1px;
+    margin: 1px;
+}
+/**
+ul li {
+    list-style:none;
+    margin-bottom:10px;
+}
+**/
+.review {
+    float: left;
+    margin-left: 2em;
+}
+
+.cart-title{
+    padding: 0.8em;
+    font-size: 2.5em;
+}
+
+
+.cat {
+    padding-bottom: 2em;
+}
+
+#men_banner {
+	background: url(../images/b1.jpg) no-repeat center top;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	min-height:225px;
+	text-align: center;
+	padding-top: 3em;
+}
+
+#content1 {
+    padding-top: 2em;
+    overflow: hidden;
+}
+
+.ckeck-top {
+    text-align: center;
+    margin-bottom: 4%;
+}

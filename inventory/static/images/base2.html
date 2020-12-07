@@ -1,0 +1,223 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Luxury Watches Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "bootstrap2/css/bootstrap.css" %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static "bootstrap2/css/memenu.css" %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static "bootstrap2/css/style.css" %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static "bootstrap2/css/style1.css" %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static "bootstrap2/css/style3.css" %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <!--jQuery(necessary for Bootstrap's JavaScript plugins)-->
+    <script src="{% static "bootstrap2/js/jquery-1.11.0.min.js" %}"></script>
+    <!--Custom-Theme-files-->
+    <!--theme-style-->
+    <!--//theme-style-->
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--start-menu-->
+    <script src="{% static "bootstrap2/js/simpleCart.min.js" %}"> </script>
+    <script type="text/javascript" src="{% static "bootstrap2/js/memenu.js" %}"></script>
+    <script>$(document).ready(function(){$(".memenu").memenu();});</script>
+    <!--dropdown-->
+    <script src="{% static "bootstrap2/js/jquery.easydropdown.js" %}"></script>
+</head>
+<body>
+        <div id="main_body_wrap" class="main_wrap">
+                <div class="main_body_wrap_inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="header">
+                                    <div class="header-top1">
+            <div class="container">
+                <div class="col-sm-3">
+                    <div class="top-left">
+
+                </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="top-right">
+                    <ul>
+                        <li><a href="{% url "orders:order_create" %}">Checkout</a> </li>
+                        <li><a href="{% url "login" %}">Login</a> </li>
+                        <li><a href="#">Create Account</a> </li>
+                        <li>
+                            <div class="cart box_1">
+                                <!--
+                                <a href="javascript:;" class="simpleCart_empty">Empty Cart</a>
+						<a href="checkout.html">
+						        -->
+							 <div class="total">
+                                {% with total_items=cart|length %}
+                                    {% if cart|length > 0 %}
+                                        <a href="{% url "cart:cart_detail" %}">
+                                            ${{ cart.get_total_price }}
+                                            ({{ total_items }} item{{ total_items|pluralize }}),
+                                        </a>
+                                        {% else %}
+                                            empty cart
+                                    {% endif %}
+                                {% endwith %}
+								<img src="{% static "img/cart-1.png" %}" alt="" />
+                                </div>
+                                </div>
+                        </li>
+                        </ul>
+
+                        </div>
+                </div>
+
+                </div>
+            </div>
+        <div class="header-bottom1">
+
+                <div class="container">
+                        <div class="col-sm-9">
+                            <div id="s5_header_wrap">
+                                <a href="{% url "inventory:product_list" %}">
+                                    <img alt="logo" src="{% static "bootstrap2/images/danpong.png" %}"/>
+                                </a>
+
+				            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="search-bar1">
+					            <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+					            <input type="submit" value="">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="logo-nav">
+                        <div class="col-sm-5">
+                            <!--
+                            <div class="logo-nav-left">
+                                <h1><a href="{#% url "inventory:product_list" %#}">Danpong Group<span>Ghana's best online shop</span></a> </h1>
+                            </div> -->
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="logo-nav-left">
+				        <div class="top-nav navbar-right">
+
+				</div>
+
+
+			</div>
+                </div>
+
+                <div class="clearfix"> </div>
+            </div>
+            </div>
+        </div>
+            </div>
+        </div>
+
+    </div>
+
+<!--banner-starts-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="bnr" id="home">
+		<div id="top" class="callbacks_container1">
+			<ul class="rslides" id="slider4">
+                <li>
+					<img src="{% static "img/dp11.jpg" %}" height="100" alt=""/>
+				</li>
+			    <li>
+					<img src="{% static "img/dp0.jpg" %}" height="100" alt=""/>
+				</li>
+				<li>
+					<img src="{% static "img/dp7.jpg" %}" height="400" alt=""/>
+				</li>
+				<li>
+					<img src="{% static "img/dp2.jpg" %}"  height="400" alt=""/>
+				</li>
+                <li>
+					<img src="{% static "img/dp1.jpg" %}" height="100" alt=""/>
+				</li>
+                <li>
+					<img src="{% static "img/dp4.jpg" %}" height="500" alt=""/>
+				</li>
+                <li>
+					<img src="{% static "img/dp9.jpg" %}" height="100" alt=""/>
+				</li>
+                <li>
+					<img src="{% static "img/dp10.jpg" %}" height="100" alt=""/>
+				</li>
+			</ul>
+
+
+
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+
+    <!--banner ends-->
+    <!--Slider-Starts-Here-->
+				<script src="{% static "bootstrap2/js/responsiveslides.min.js" %}"></script>
+			 <script>
+			    // You can also use "$(window).load(function() {"
+			    $(function () {
+			      // Slideshow 4
+			      $("#slider4").responsiveSlides({
+			        auto: true,
+			        pager: true,
+			        nav: true,
+			        speed: 500,
+			        namespace: "callbacks",
+			        before: function () {
+			          $('.events').append("<li>before event fired.</li>");
+			        },
+			        after: function () {
+			          $('.events').append("<li>after event fired.</li>");
+			        }
+			      });
+
+			    });
+			  </script>
+			<!--End-slider-script-->
+            </div>
+        </div>
+    </div>
+
+
+    <div id="content1">
+        <div class="container">
+            {% block container %}{% endblock %}
+        </div>
+    </div>
+    <!--footer-starts-->
+	<div class="footer">
+		<div class="container">
+            <div class="row">
+                <div class="footer-top">
+				<div class="col-sm-6 footer-left">
+
+				</div>
+            </div>
+                    <div class="col-sm-6 footer-right">
+					<p>© 2016 Danpong Group. All Rights Reserved | Design by  <strong>Limitless Apps Studios</strong> </p>
+				</div>
+
+
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!--footer-end-->
+                </div>
+        </div>
+
+
+
+
+</body>
+</html>
+

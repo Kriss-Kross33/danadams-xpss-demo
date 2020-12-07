@@ -1,0 +1,45 @@
+{% extends "inventory/base.html" %}
+{% block title %}Checkout{% endblock %}
+{% block otherLinks %}{% endblock %}
+{% block container %}
+    <div class="container">
+         <div class="row">
+        <div class="col-sm-12">
+            <h1 class="checkout">Checkout</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <form action="." method="post" class="order-form">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input type="submit" value="Proceed to Payment">
+            </form>
+            </div>
+        <div class="col-sm-6">
+            <div class="order-info">
+        <h3>Your Order</h3>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    {{ item.quantity }}x {{ item.product.name }}
+                    <span>GH₵{{ item.total_price }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Total: GH₵{{ cart.get_total_price }}</p>
+    </div>
+        </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+        </div>
+    </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

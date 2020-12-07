@@ -1,0 +1,124 @@
+{% extends "inventory/base3.html" %}
+{% load static %}
+{% block title %}Your Shopping Cart{% endblock %}
+{% block otherLinks %}{% endblock %}
+{% block container %}
+
+<!--start-ckeckout-->
+	<div class="ckeckout">
+		<div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ckeck-top heading">
+				<h1>YOUR SHOPPING CART</h1>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ckeckout-top">
+			<div class="cart-items">
+            {% with total_items=cart|length %}
+                <h3 class="cartheader">My Shopping Bag ({{ total_items }} item{{ total_items|pluralize }})</h3>
+            {% endwith %}
+				<script>$(document).ready(function(c) {
+					$('.close1').on('click', function(c){
+						$('.cart-header').fadeOut('slow', function(c){
+							$('.cart-header').remove();
+						});
+						});
+					});
+			   </script>
+			<script>$(document).ready(function(c) {
+					$('.close2').on('click', function(c){
+						$('.cart-header1').fadeOut('slow', function(c){
+							$('.cart-header1').remove();
+						});
+						});
+					});
+			   </script>
+			   <script>$(document).ready(function(c) {
+					$('.close3').on('click', function(c){
+						$('.cart-header2').fadeOut('slow', function(c){
+							$('.cart-header2').remove();
+						});
+						});
+					});
+			   </script>
+    <table class="cart">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Unit price</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+            <tr>
+                <td>
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{% if product.image %}{{ product.image.url }}
+                        {% else %}{% static "img/no_image.png" %}{% endif %}">
+                    </a>
+                </td>
+                <td>{{ product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td><a href="{% url "cart:cart_remove" product.id %}">Remove</a></td>
+                <td class="num">GH₵{{ item.price }}</td>
+                <td class="num">GH₵{{ item.total_price }}</td>
+            </tr>
+            {% endwith %}
+        {% endfor %}
+        {% if cart.coupon %}
+            <tr class="subtotal">
+                <td>Subtotal</td>
+                <td colspan="4"></td>
+                <td class="num">GH₵{{ cart.get_total_price }}</td>
+            </tr>
+            <tr>
+                <td>
+                    "{{ cart.coupon.code }}" coupon
+                    ({{ cart.coupon.discount }}% off)
+                </td>
+                <td colspan="4"></td>
+                <td class="num neg">- GH₵{{ cart.get_discount|floatformat:"2" }}</td>
+            </tr>
+        {% endif %}
+        <tr class="total">
+            <td>Total</td>
+            <td colspan="4"></td>
+            <td class="num">GH₵{{ cart.get_total_price_after_discount|floatformat:"2" }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+            <p>Apply a coupon:</p>
+            <form action="{% url "coupons:coupon_apply" %}" method="post">
+                {{ coupon_form }}
+                <input type="submit" value="Apply">
+                {% csrf_token %}
+            </form>
+
+		 </div>
+		</div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="text-right">
+                <a href="{% url "inventory:product_list" %}" class="button light">Continue shopping</a>
+                <a href="{% url "orders:order_create" %}" class="button">Checkout</a>
+            </p>
+            </div>
+        </div>
+
+
+	</div>
+    </div>
+	<!--end-ckeckout-->
+{% endblock %}

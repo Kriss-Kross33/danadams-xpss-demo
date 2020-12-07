@@ -1,0 +1,381 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>{% block title %}{% endblock %}</title>
+<link href="{% static "css/admin_basesite.css" %}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/static/suit/css/suit.css" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+    <link href='/static/suit/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css" />
+
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" />
+
+
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+
+
+
+
+
+
+
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        $("tr input.action-select").actions();
+    });
+})(django.jQuery);
+</script>
+
+
+<meta name="robots" content="NONE,NOARCHIVE" />
+</head>
+
+
+<body class="suit_toggle_changelist_top_actions suit_form_submit_on_right suit_layout_horizontal app-orders model-order change-list"
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+    <h1 id="site-name">
+        <a href="/admin/">
+            Django administration
+            <span class="header-label">Admin</span></a>
+    </h1>
+
+        </div>
+
+
+        <div id="user-tools" class="suit-user-tools">
+
+                <span class="welcome">
+                Welcome,
+                <strong>kriss</strong>.
+            </span>
+
+            <div class="user-links">
+
+
+                    <a href="/" class="icon-link view-site-link" data-title="View site">View site</a>
+                    <span class="separator">/</span>
+
+
+
+
+
+
+
+                    <a href="/admin/password_change/" class="icon-link change-password-link" data-title="Change password">Change password</a>
+                    <span class="separator">/</span>
+
+                <a href="/admin/logout/" class="icon-link logout-link" data-title="Log out">Log out</a>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+    <div id="suit-nav">
+        <ul>
+
+
+
+
+<li class=" has-children">
+    <a href="/admin/account/profile/"
+            >Account
+    </a>
+
+
+            <ul class="sub-nav">
+
+                    <li>
+                        <a href="/admin/account/profile/"
+                                >Profiles</a>
+                    </li>
+
+            </ul>
+
+
+</li>
+
+
+
+
+
+<li class=" has-children">
+    <a href="/admin/auth/group/"
+            >Authentication and Authorization
+    </a>
+
+
+            <ul class="sub-nav">
+
+                    <li>
+                        <a href="/admin/auth/group/"
+                                >Groups</a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/auth/user/"
+                                >Users</a>
+                    </li>
+
+            </ul>
+
+
+</li>
+
+
+
+
+
+<li class=" has-children">
+    <a href="/admin/deliveries/delivery/"
+            >Deliveries
+    </a>
+
+
+            <ul class="sub-nav">
+
+                    <li>
+                        <a href="/admin/deliveries/delivery/"
+                                >Deliverys</a>
+                    </li>
+
+            </ul>
+
+
+</li>
+
+
+
+
+
+<li class=" has-children">
+    <a href="/admin/inventory/category/"
+            >Inventory
+    </a>
+
+
+            <ul class="sub-nav">
+
+                    <li>
+                        <a href="/admin/inventory/category/"
+                                >Categories</a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/inventory/manufacturer/"
+                                >Manufacturers</a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/inventory/product/"
+                                >Products</a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/inventory/vendor/"
+                                >Vendors</a>
+                    </li>
+
+            </ul>
+
+
+</li>
+
+
+
+
+
+<li class=" active has-children">
+    <a href="/admin/orders/orderitem/"
+            >Orders
+    </a>
+
+
+
+</li>
+
+
+
+
+
+<li class=" has-children">
+    <a href="/admin/taggit/tag/"
+            >Taggit
+    </a>
+
+
+            <ul class="sub-nav">
+
+                    <li>
+                        <a href="/admin/taggit/tag/"
+                                >Tags</a>
+                    </li>
+
+            </ul>
+
+
+</li>
+
+
+
+
+        </ul>
+
+    </div>
+
+        <div id="suit-sub-nav">
+            <ul>
+
+                    <li>
+                        <a href="/admin/orders/orderitem/"
+                                >Order items</a>
+                    </li>
+
+                    <li class=active>
+                        <a href="/admin/orders/order/"
+                                >Orders</a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/orders/paymentmethod/"
+                                >Payment Methods</a>
+                    </li>
+
+            </ul>
+        </div>
+
+
+
+
+    </div>
+    <!-- END Header -->
+
+<div class="breadcrumbs">
+<a href="/admin/">Home</a>
+&rsaquo; <a href="/admin/orders/">Orders</a>
+&rsaquo; Orders
+</div>
+
+
+
+
+
+
+
+    <!-- Content -->
+
+    <div id="content" class="flex">
+
+<div class="content-wrap">
+
+        <h1>Select order to change</h1>
+
+  <div id="content-main">
+
+    {% block main_content %}
+
+    {% endblock %}
+
+
+  </div>
+
+
+    </div> <!-- Close content-wrap -->
+
+        <br class="clear" />
+    </div>
+    <!-- END Content -->
+
+
+
+
+
+        <div id="footer">
+        <footer class="footer">
+            <div class="container-fluid">
+
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-3 footer-links">
+
+                                <a href="http://djangosuit.com/support/" target="_blank">Support</a>
+                                <a href="http://djangosuit.com/pricing/" target="_blank">Licence</a>
+                                <a href="http://github.com/darklow/django-suit/issues" target="_blank">Report a bug</a>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 text-sm-center footer-copyright">
+
+                                Copyright &copy;
+                                <span class="hidden-md-down">2013-</span>2017 DjangoSuit.com
+                                <br>Developed by
+                                <a href="http://djangosuit.com" target="_blank">DjangoSuit.com</a>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3 text-sm-right footer-version">
+
+
+                                    Django administration
+
+
+
+                        </div>
+
+                    </div>
+
+            </div>
+        </footer>
+
+
+
+    <script src="/static/suit/js/suit.js"></script>
+
+        <script type="text/javascript">
+            Suit.ListActionsToggle.init();
+        </script>
+
+
+
+
+
+
+        <script type="text/javascript">
+            // Handle change list filter null values
+            Suit.$('.search-filter').suitSearchFilters();
+        </script>
+
+
+</div>
+<!-- END Container -->
+</div>
+</body>
+</html>

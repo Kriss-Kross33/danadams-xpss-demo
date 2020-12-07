@@ -1,0 +1,153 @@
+{% extends 'admin/base_site.html' %}
+{% load static %}
+{% block extrastyle %}
+    <link href="{% static "css/bootstrap.css" %}" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static "js/jquery.min.js" %}"></script>
+<!-- Custom Theme files -->
+<link href="{% static "css/style2.css" %}" rel="stylesheet" type="text/css" media="all" />
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="BOX SHOP Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<!-- start menu -->
+<link href="{% static "css/megamenu.css" %}" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="{% static "js/megamenu.js" %}"></script>
+<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+<!-- start slider -->
+<script src="{% static "js/responsiveslides.min.js" %}"></script>
+{% endblock %}
+{% block title %}
+
+{% endblock %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url "admin:index" %}">Home</a> &rsaquo;
+    <a href="{% url "admin:raw_materials_dept_receivednote_changelist" %}">
+        Goods Received Note</a> &rsaquo;
+
+</div>
+{% endblock %}
+{% block content %}
+    <ul class="object-tools">
+    <li>
+        <a href="#" onclick="window.print();">Print Goods Received Note</a>
+    </li>
+</ul>
+
+    <div class="wrap">
+        <div class="main-bg">
+            <div class="main">
+                <div class="header-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="logo">
+					                <img src="{% static "images/danadams.png" %}" class="img-responsive" alt="" />
+				                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1>GOODS RECEIVED NOTE</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm-4">
+                            <p>The underlisted items were received into the stores on
+                            ...............</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>To: DANADAMS PHARMACEUTICALS</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>Date: {{ received_note.updated }}</p>
+                        </div>
+                    </div>
+
+                        <table class="tg">
+                        <tr>
+                            <th class="tg-031e">ITEM</th>
+                            <th class="tg-031e">DESCRIPTION</th>
+                            <th class="tg-031e">MANUFACTURER</th>
+                            <th class="tg-031e">BATCH No.</th>
+                            <th class="tg-031e">QUANTITY</th>
+                          </tr>
+                            {% for product in received_advice_note %}
+                          <tr>
+
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e">{{ product.description }}</td>
+                            <td class="tg-031e">{{ product.manufacturer }}</td>
+                            <td class="tg-031e">{{ product.bat }}</td>
+                            <td class="tg-031e">{{ product.quantity }}</td>
+                          </tr>
+                            {% endfor %}
+                          <tr>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                          </tr>
+                          <tr>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                          </tr>
+                          <tr>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+
+                          </tr>
+                    </table>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>Prepared By: {{ request.user.first_name }} {{ request.user.last_name }}</p>
+                            <p class="checked">Checked by {{ request.user.first_name }} {{ request.user.last_name }}</p>
+                            <p>Code:</p>
+                        </div>
+                        <div class="col-sm-6">
+                             <p>Prepared By:</p>
+                            <p class="{% if received_note.status.label == "Approved" %}
+                            approved{% elif received_note.status.label == 'Rejected' %}rejected
+                            {% elif received_note.status.label == 'Pending Approval' %}pending{% endif %}"
+                            >{% if received_note.status.label == "Approved" %}Approved by H.O.D
+                            {% elif received_note.status.label == 'Rejected' %}Rejected by H.O.D
+                                {% elif received_note.status.label == 'Pending Approval' %}
+                                Pending Approval{% endif %}</p>
+                            <p>Remarks:</p>
+                        </div>
+                        </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
+
+
+

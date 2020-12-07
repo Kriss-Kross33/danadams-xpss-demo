@@ -1,0 +1,136 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+{% block title %}{% if category %}{{ category.name }}{% else %}Products{% endif %}{% endblock %}
+{% block extrajs %}
+     <script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+<!--end slider -->
+<link rel="stylesheet" href={% static "css/flexslider.css" %}"" type="text/css" media="screen" />
+				<script type="text/javascript">
+			$(window).load(function() {
+				$("#flexiselDemo").flexisel({
+					visibleItems: 5,
+					animationSpeed: 1000,
+					autoPlay: true,
+					autoPlaySpeed: 3000,
+					pauseOnHover: true,
+					enableResponsiveBreakpoints: true,
+			    	responsiveBreakpoints: {
+			    		portrait: {
+			    			changePoint:480,
+			    			visibleItems: 1
+			    		},
+			    		landscape: {
+			    			changePoint:640,
+			    			visibleItems: 2
+			    		},
+			    		tablet: {
+			    			changePoint:768,
+			    			visibleItems: 3
+			    		}
+			    	}
+			    });
+
+			});
+		</script>
+		<script type="text/javascript" src="{% static "js/jquery.flexisel.js" %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="main">
+    <div class="content">
+    	<div class="content_top">
+    		<div class="heading">
+    		<h3>{{ category.name }}</h3>
+    		</div>
+    		<div class="sort">
+    		<p>Sort by:
+    			<select>
+    				<option>Lowest Price</option>
+    				<option>Highest Price</option>
+    				<option>Lowest Price</option>
+    				<option>Lowest Price</option>
+    				<option>Lowest Price</option>
+    				<option>In Stock</option>
+    			</select>
+    		</p>
+    		</div>
+    		<div class="show">
+    		<p>Show:
+    			<select>
+    				<option>4</option>
+    				<option>8</option>
+    				<option>12</option>
+    				<option>16</option>
+    				<option>20</option>
+    				<option>In Stock</option>
+    			</select>
+    		</p>
+    		</div>
+    		<div class="page-no">
+    			<p>Result Pages:<ul>
+    				<li><a href="#">1</a></li>
+    				<li class="active"><a href="#">2</a></li>
+    				<li><a href="#">3</a></li>
+    				<li>[<a href="#"> Next>>></a >]</li>
+    				</ul></p>
+    		</div>
+    		<div class="clearfix"></div>
+    	</div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                <div class="sub-cate">
+            <div class=" top-nav rsidebar span_1_of_left">
+                <h3 class="cate">CATEGORIES</h3>
+		        <ul class="menu">
+
+                    <li {% if not category %}class="item1"{% endif %}>
+                        <a href="{% url "inventory:product_list" %}">All</a>
+
+                    </li>
+                {% for c in categories %}
+                    <li {% if c.slug == category.slug %}class="selected" {% endif %}>
+                        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+             </div>
+        </div>
+                    {% for product in products %}
+	      <div class="section group">
+				<div class="grid_1_of_4 images_1_of_4">
+					 <a href="{{ product.get_absolute_url }}">
+                         <img src="{% if product.image %}{{ product.image.url }}
+                         {% else %}{% static "images/no_image.png" %}{% endif %}"/></a>
+					 <h2>{{ product.name }} </h2>
+                     <p>Available: {{ product.stock }}</p>
+					 <p><span class="strike">GH₵{{ product.old_price }}</span>
+                         <span class="price">GH₵{{ product.price }}</span></p>
+					  <div class="button"><span><img src="{% static "images/cart.jpg" %}"/><a href="single.html" class="cart-button">Add to Cart</a></span> </div>
+				     <div class="button"><span><a href="{{ product.get_absoulte_url }}"
+                                                  class="details">Details</a></span></div>
+                <div class="clearfix"></div>
+				</div>
+        {% endfor %}
+                <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    </div>
+    </div>
+{% endblock %}

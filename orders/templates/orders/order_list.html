@@ -1,0 +1,27 @@
+{% extends "inventory/base2.html" %}
+{% block title %}Orders{% endblock %}
+{% block container %}
+
+
+<table class="table-striped">
+    <thead>
+        <tr>
+            <td>Order no</td>
+            <td>Sales person</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for order  in orders %}
+
+        <tr>
+            <td>{{order.id}}</td>
+            <td>{{order.sales_person}}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endblock %}

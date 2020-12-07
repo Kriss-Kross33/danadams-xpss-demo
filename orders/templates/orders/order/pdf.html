@@ -1,0 +1,59 @@
+{% load static %}
+<html>
+<head>
+    <link href="{% static "css/base0.css" %}" rel="stylesheet">
+</head>
+<body>
+    <h1>My Shop</h1>
+    <div id="background">
+  <p id="bg-text">DANGPONG GROUP</p>
+	</div>
+
+	<div id="content">
+        <p>
+        Invoice nr. {{ order.id }}<br>
+        <span class="secondary">{{ order.created|date:"M d, Y" }}</span>
+    </p>
+
+    <h3>Bill to</h3>
+    <p>
+        {{ order.fullname }}<br>
+        {{ order.vendor }}
+        {{ order.email }}<br>
+        {{ order.delivery_address }}<br>
+        {{ order.location}}
+    </p>
+
+    <h3>Items bought</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in order.items.all %}
+            <tr class="row{% cycle "1" "2" %}">
+                <td>{{ item.product.name }}</td>
+                <td class="num">GH₵{{ item.price }}</td>
+                <td class="num">{{ item.quantity }}</td>
+                <td class="num">GH₵{{ item.get_cost }}</td>
+            </tr>
+        {% endfor %}
+            <tr class="total">
+                <td colspan="3">Total</td>
+                <td class="num">GH₵{{ order.get_total_cost }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <span class="{% if order.paid %}paid{% else %}pending{% endif %}">
+        {% if order.paid %}Paid{% else %}Pending payment{% endif %}
+    </span>
+    </div>
+
+</body>
+</html>
